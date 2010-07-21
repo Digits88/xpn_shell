@@ -1,0 +1,50 @@
+XPN Shell for python exploit developers.
+
+Web: http://xpnsbraindump.blogspot.com
+Email: email.xpn@gmail.com
+
+This module provides exploit developers with a shell like environment 
+without worrying about having to write a UI each time they develop an
+exploit.
+
+The implementation is very simple, and is easily extended with commands
+and variables.
+
+THIS IS NOT A REPLACEMENT FOR METASPLOIT
+========================================
+
+As if ;). Metasploit is a full framework, this is just a simple UI for exploit
+developers. The reason for its creation is my need for creating portable
+exploits without taking the full metasploit framework with me.
+
+This module can be imported or the exploit can be added to the end of the module
+and distributed as one file (see example at the tail of this file)
+
+Example:
+
+# Typical usage for this module should be as follows:
+
+class my_l33t_exploit(Exploit):
+	def __init__(self.....)
+		self.name = "My L33t Exploit"
+		self.description = "A description of my L33T Exploit"
+
+	def run(self, ui):
+		param1 = ui.get_var("param1")
+		param2 = ui.get_var("param2")
+
+		# Leet exploit stuff here #
+
+		ui.print_info("Host Exploited")
+
+		# More leet stuff here #
+
+		ui.print_warning("Unable to gain r00t")
+
+exploit_obj = my_l33t_exploit()
+exploit_ui = ui()
+exploit_ui.title = "L33T Exploit!"
+exploit_ui.add_var("param1", "Hostname to target", "127.0.0.1", required=True)
+exploit_ui.add_var("param2", "TCP port to target", 8080, required=True)
+exploit_ui.add_exploit(exploit_obj)
+exploit_ui.run()

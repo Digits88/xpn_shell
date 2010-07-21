@@ -8,7 +8,7 @@ This module provides exploit developers with a shell like environment
 without worrying about having to write a UI each time they develop an
 exploit.
 
-The implimentation is very simple, and is easily extended with commands
+The implementation is very simple, and is easily extended with commands
 and variables.
 
 THIS IS NOT A REPLACEMENT FOR METASPLOIT
@@ -159,8 +159,8 @@ XPN Shell - Created by XPN (http://xpnsbraindump.blogspot.com)
 		command - String containing command 
 		callback - Function that accepts 2 params
 		description - A description of the command. This is recommended to have the format:
-				"Usage: USAGE INFO HERE [PARAM1]\\n\\tDescription Here\n"
-		min_args - Minimum number of argumentst that need to be provided
+				"Usage: USAGE INFO HERE [PARAM1]\\n\\tDescription Here\\n"
+		min_args - Minimum number of arguments that need to be provided
 		max_args - Maximum number of arguments that need to be provided
 
 		callback function must accept 2 commands for example:
@@ -405,7 +405,7 @@ XPN Shell - Created by XPN (http://xpnsbraindump.blogspot.com)
 	def _exploit_command(self, ui, params):
 		# this is where we launch the actual exploit 
 
-		# first we need to check to make sure all required variables are accessable
+		# first we need to check to make sure all required variables are accessible
 
 		for var_name, var in self._vars.iteritems():
 			if var["required"] == True:
@@ -472,45 +472,45 @@ class Exploit:
 ##########################################################################################################################################
 # EXAMPLE																 #
 ##########################################################################################################################################
-
-class my_exploit(Exploit):
-	name = "Test Exploit"
-	description = "My Test Exploit Description"
-
-	def __init__(self):
-		pass;
-
-	def _test_command(self, ui, params):
-		ui.print_info("CALLED OUR TEST COMAMND: ECHO '{0}'".format(params[0]))
-
-	def run(self, ui):
-		host = ui.get_var("TARGET_HOST")
-		ui.print_info("We would have exploited {0} if this was a real exploit".format(host))
-		
-		
-if __name__ == "__main__":
-
-
-	exploit_obj = my_exploit()
-	main_ui = ui()
-	main_ui.title = """\
-
-Simple Test Exploit
-
-Just to show the usage of the exploit ui interface
-
-Variables Required: 
-	TARGET_HOST
-
-Example Usage:
-	set TARGET_HOST=127.0.0.1
-	test_command WOOP_WOOP
-	exploit
-
-"""
-
-
-	main_ui.add_var("TARGET_HOST", "Host to target", "127.0.0.1", required=True)
-	main_ui.add_exploit(exploit_obj)
-	main_ui.add_command("test_command", exploit_obj._test_command, "Usage: test_command PARAM\n\tDoes nothing, just a test\n", 1, 1)
-	main_ui.run()
+#
+#class my_exploit(Exploit):
+#	name = "Test Exploit"
+#	description = "My Test Exploit Description"
+#
+#	def __init__(self):
+#		pass;
+#
+#	def _test_command(self, ui, params):
+#		ui.print_info("CALLED OUR TEST COMAMND: ECHO '{0}'".format(params[0]))
+#		
+#
+#	def run(self, ui):
+#		host = ui.get_var("TARGET_HOST")
+#		ui.print_info("We would have exploited {0} if this was a real exploit".format(host))
+#		
+#		
+#if __name__ == "__main__":
+#
+#	exploit_obj = my_exploit()
+#	main_ui = ui()
+#	main_ui.title = """\
+#
+#Simple Test Exploit
+#
+#Just to show the usage of the exploit ui interface
+#
+#Variables Required: 
+#	TARGET_HOST
+#
+#Example Usage:
+#	set TARGET_HOST=127.0.0.1
+#	test_command WOOP_WOOP
+#	exploit
+#
+#"""
+#
+#
+#	main_ui.add_var("TARGET_HOST", "Host to target", "127.0.0.1", required=True)
+#	main_ui.add_exploit(exploit_obj)
+#	main_ui.add_command("test_command", exploit_obj._test_command, "Usage: test_command PARAM\n\tDoes nothing, just a test\n", 1, 1)
+#	main_ui.run()

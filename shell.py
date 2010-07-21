@@ -90,12 +90,10 @@ XPN Shell - Created by XPN (http://xpnsbraindump.blogspot.com)
 	}
 
 	# control variable to allow stopping the running shell
-	# TODO: Add this throughout where using within the running exploit is not advisable
 	_shell_running = True
 
 	def __init__(self, stdin=sys.stdin, stdout=sys.stdout, stderr=sys.stderr):
 		# All handles must be file objects
-		# TODO: Testing to test sockets instead of file handles
 
 		if not isinstance(stdin, file):
 			raise UiException("STDIN handle passed to __init__ is not a file object")
